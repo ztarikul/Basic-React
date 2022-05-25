@@ -4,12 +4,16 @@ import bookList from '../assets/books.js';
 
 
 class MainComponent extends Component {
-    state = {
-        books: bookList,
-        showBooks: true
+    constructor(props) {
+        super(props);
+        this.state = {
+            books: bookList,
+            showBooks: true
+
+        }
+        console.log("MainComponent Constructor!");
 
     }
-
 
 
 
@@ -41,7 +45,31 @@ class MainComponent extends Component {
     }
 
 
+    componentDidMount() {
+        console.log("MainComponet componentDidMount!");
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("U MainComponent shouldComponentUpdate", nextProps, nextState);
+        return true;
+    }
+
+
+    UNSAFE_componentWillMount() {
+        console.log("MainComponent componentWillMount!");
+    }
+
+    UNSAFE_componentWillUpdate(nextProps, nextState) {
+        console.log("U MainComponent componentWillUpdate");
+    }
+
+    componentDidUpdate() {
+        console.log("U MainComponent componentDidUpdate");
+    }
+
+
     render() {
+        console.log("MainComponent render!");
 
         //INLINE CSS CODE
         const style = {

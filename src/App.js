@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import MainComponent from './components/MainComponent';
-
+import { BrowserRouter } from 'react-router-dom';
 
 //State Defined
 
@@ -9,8 +9,12 @@ import MainComponent from './components/MainComponent';
 
 
 const App = () => {
-  return <MainComponent />
+  return (
+    <BrowserRouter>
+      <MainComponent />
+    </BrowserRouter>
+  )
 }
-
+/// BrouserRouter can be add in root directory [App.js]
 
 export default App;

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import BookList from './list/BookList';
 import bookList from '../assets/books.js';
+import NewBook from './representational/NewBook';
+import { Route } from  'react-router-dom';
+
 
 
 class MainComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            books: bookList,
-            showBooks: true
+            books: bookList
 
         }
-        console.log("MainComponent Constructor!");
-
     }
 
 
@@ -39,61 +39,25 @@ class MainComponent extends Component {
             books: books
         });
     }
-    toggleBooks = () => {
-        this.setState({ showBooks: !this.state.showBooks })
-
-    }
 
 
-    componentDidMount() {
-        console.log("MainComponet componentDidMount!");
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("U MainComponent shouldComponentUpdate", nextProps, nextState);
-        return true;
-    }
 
 
-    UNSAFE_componentWillMount() {
-        console.log("MainComponent componentWillMount!");
-    }
-
-    UNSAFE_componentWillUpdate(nextProps, nextState) {
-        console.log("U MainComponent componentWillUpdate");
-    }
-
-    componentDidUpdate() {
-        console.log("U MainComponent componentDidUpdate");
-    }
-
+ 
 
     render() {
-        console.log("MainComponent render!");
 
         //INLINE CSS CODE
-        const style = {
-            border: "1px solid black",
-            borderRadius: "5px",
-            backgroundColor: "black",
-            color: "white"
-        }
-
-
 
         // const bookState = this.state.books;
 
-
-        let books = null;
-        if (this.state.showBooks) {
-            books = <BookList
+            const books = <BookList
                 books={this.state.books}
                 deleteBookState={this.deleteBookState}
                 changeWithInputState={this.changeWithInputState}
             /> // Three parameter -> item, index, array
 
             // console.log(bookState);
-        }
 
 
 
@@ -101,9 +65,20 @@ class MainComponent extends Component {
 
         return (
             <div className="App">
-                <h1 style={style}>Book List</h1>
-                <button onClick={this.toggleBooks}>Toggle Books</button>
-                {books}
+                <div className="nav-bar">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/new-book">New Book</a></li>
+                </ul>
+                </div>
+                
+                <Route path="/" exact render={() => <h1>Home</h1>} /> 
+                <Route path="/new-book" exact render={() => <h1>New Book</h1>} /> 
+               
+                        
+                
+                
+                
 
             </div>
         ); //  {this.state.showBooks ? books : null}  Conditional Operator; if show books true show books, otherwise show null
